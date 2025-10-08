@@ -1,16 +1,21 @@
 import { useState } from "react";
 import axios from "axios";
+import { LoaderCircle } from "lucide-react";
 
 function MovieForm({ setMovies }) {
   const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const getRecommendations = async (userInput) => {
     try {
+      setLoading(true);
       const res = await axios.post("/api/v1/recommendation", { userInput });
       const data = res.data.recommendations;
+      setLoading(false);
       return { data };
     } catch (error) {
       console.error("Error fetching recommendations:", error);
+      setLoading(false);
     }
   };
 
@@ -33,7 +38,14 @@ function MovieForm({ setMovies }) {
         className="border p-2 w-full rounded-md"
       />
       <button className="bg-blue-600 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-blue-700 transition-all duration-300">
-        Get Recommendations
+        {loading ? (
+          <div className="flex items-center">
+            <LoaderCircle className="animate-spin " />
+            <span className="ml-2">Searching</span>
+          </div>
+        ) : (
+          "Get Recommendations"
+        )}
       </button>
     </form>
   );
