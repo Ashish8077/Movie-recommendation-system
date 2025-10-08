@@ -4,7 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon backend/src/server.js"
+    "dev": "nodemon backend/src/server.js --watch backend --ignore frontend",
+    "start": "node backend/src/server.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "keywords": [],
   "types": "module",
@@ -13,8 +15,9 @@
   "type": "module",
   "dependencies": {
     "axios": "^1.12.2",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.3",
-    "express": "^5.1.0",
+    "express": "^4.21.2",
     "mongoose": "^8.19.1",
     "openai": "^6.2.0"
   },

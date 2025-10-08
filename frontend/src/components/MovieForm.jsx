@@ -32,7 +32,7 @@ function MovieForm({ setMovies }) {
         onChange={(e) => setInput(e.target.value)}
         className="border p-2 w-full rounded-md"
       />
-      <button className="bg-blue-600 text-white px-4 py-2 rounded-lg">
+      <button className="bg-blue-600 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-blue-700 transition-all duration-300">
         Get Recommendations
       </button>
     </form>
